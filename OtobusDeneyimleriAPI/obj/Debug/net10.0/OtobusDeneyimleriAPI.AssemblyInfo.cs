@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OtobusDeneyimleriAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d92058f483146378724999601f49168c8562c733")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c07036e7ab2a48d07bedaf995446f46dc02a59d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("OtobusDeneyimleriAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OtobusDeneyimleriAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,6 @@
+bin/
+obj/
+otobus.db
+otobus.db-shm
+otobus.db-wal
+appsettings.Development.json
