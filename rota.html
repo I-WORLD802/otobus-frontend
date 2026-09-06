@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rota Detayı | Otobüs Deneyimleri</title>
+    <meta name="description" content="Otobüs rotalarındaki firmaları, yolcu puanlarını ve seyahat deneyimlerini karşılaştırın.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+            <nav>
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary">Değerlendirme Yaz</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="company-header">
+            <h1 class="company-name" id="routeName">Yükleniyor...</h1>
+            <div class="overall-rating">
+                <span class="stars" id="routeOverallRating">⭐ - / 5</span>
+                <span class="review-count" id="routeReviewCount">- değerlendirme</span>
+            </div>
+        </section>
+
+        <!-- Rota Öne Çıkanları -->
+        <section class="route-highlights-section">
+            <div class="route-highlights-header">
+                <h2>Rota Öne Çıkanları</h2>
+                <p>Bu rotadaki firma değerlendirmelerine göre öne çıkanlar</p>
+            </div>
+            
+            <div id="routeHighlights" class="highlights-grid">
+                <!-- JS ile özet kartları buraya eklenecek -->
+            </div>
+        </section>
+
+        <section class="route-companies-section" style="margin-top: 2rem;">
+            <h2 style="font-size: 1.5rem; color: var(--text-dark); margin-bottom: 5px;">
+                Yolcuların bu rotada değerlendirdiği firmalar
+            </h2>
+            <p style="color: var(--text-light); margin-bottom: 20px;">
+                Gerçek yolcu deneyimlerine göre oluşturulmuş firma karşılaştırması.
+            </p>
+
+            <div id="route-companies-container" class="company-grid-modern">
+                <!-- JS ile API'den gelen veriler modern kartlar halinde buraya doldurulacak -->
+            </div>
+        </section>
+    </main>
+    
+    <!-- FİRMA KARŞILAŞTIRMA BARI (Seçim yapıldıkça altta belirecek) -->
+    <div id="comparisonBar" aria-live="polite">
+        <div id="comparisonBarContent">
+            <span id="comparisonCount">0 Firma Seçildi</span>
+            <button id="openComparisonButton">Karşılaştır</button>
+        </div>
+    </div>
+
+    <!-- FİRMA KARŞILAŞTIRMA MODALI (Tablonun gösterileceği açılır pencere) -->
+    <div id="comparisonModal" role="dialog" aria-modal="true" aria-labelledby="comparisonModalTitle">
+        <div id="comparisonModalContent">
+            <div id="comparisonModalHeader">
+                <h2 id="comparisonModalTitle">Firmaları Karşılaştır</h2>
+                <button id="closeComparisonModal" aria-label="Kapat">Kapat</button>
+            </div>
+            <div id="comparisonTableContainer">
+                <!-- JS ile karşılaştırma tablosu buraya eklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

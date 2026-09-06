@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tüm Rotalar | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+           <nav id="mainNav" class="nav-links">
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary" style="margin-left: 15px;">Değerlendirme Yaz</a>
+                <span id="dynamicAuthMenu" class="auth-menu"></span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-size: 2rem; color: var(--text-dark); margin-bottom: 8px;">Tüm Popüler Rotalar</h2>
+            <p style="color: var(--text-light); font-size: 1.05rem;">Hangi güzergahta hangi firmanın daha iyi hizmet verdiğini karşılaştırın ve inceleyin.</p>
+        </div>
+        
+        <!-- MODERN ROTA ARAMA KUTUSU -->
+        <div class="search-container" style="max-width: 600px; margin: 0 auto 3rem auto;">
+            <div class="hero-search-box">
+                <input type="text" id="routeSearchInput" placeholder="Rota Ara (Örn: İstanbul, Ankara...)" onkeyup="searchRoutes()">
+                <button onclick="searchRoutes()" class="btn-search">Ara</button>
+            </div>
+        </div>
+
+        <!-- ROTALARIN DİZİLECEĞİ MODERN GRİD ALANI -->
+        <div id="rota-listesi" class="routes-grid-modern"></div>
+        
+        <!-- ROTA SAYFALAMA BUTONLARI -->
+        <div id="routePagination" class="pagination-modern"></div>
+    </main>
+    
+    <!-- PROFESYONEL FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2 style="margin-top: 0;">🚌 Otobüs Deneyimleri</h2>
+                <p>Türkiye'nin en şeffaf otobüs yolculuğu değerlendirme ve puanlama platformu.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kurumsal</h4>
+                <a href="#">Hakkımızda</a>
+                <a href="#">Kullanım Koşulları</a>
+                <a href="#">Gizlilik Politikası</a>
+            </div>
+            <div class="footer-links">
+                <h4>Keşfet</h4>
+                <a href="firmalar.html">Tüm Firmalar</a>
+                <a href="rotalar.html">Popüler Rotalar</a>
+                <a href="degerlendirme.html">Değerlendirme Yaz</a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Otobüs Deneyimleri. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+</body>
+</html>

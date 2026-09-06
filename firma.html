@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firma Detayı | Otobüs Deneyimleri</title>
+    <meta name="description" content="Otobüs firmaları hakkında yolcu değerlendirmeleri, puanlar ve seyahat deneyimlerini inceleyin.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+            <nav>
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary">Değerlendirme Yaz</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="company-header">
+            <h1 class="company-name" id="companyName">Yükleniyor...</h1>
+            <div class="overall-rating">
+                <span class="stars" id="overallRating">⭐ - / 5</span>
+                <span class="review-count" id="reviewCount">- değerlendirme</span>
+            </div>
+        </section>
+
+        <section class="category-scores-section">
+            <h2>Kategori Puanları</h2>
+            <div class="score-grid">
+                <div class="score-item">
+                    <span class="score-label">Dakiklik</span>
+                    <span class="score-value" id="scoreDakiklik">-</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Temizlik</span>
+                    <span class="score-value" id="scoreTemizlik">-</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Konfor</span>
+                    <span class="score-value" id="scoreKonfor">-</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Personel</span>
+                    <span class="score-value" id="scorePersonel">-</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <h2>Yolcular Ne Diyor?</h2>
+          <!-- Yorumlar Üst Bilgi ve Akıllı Filtre -->
+<div class="review-sort-row">
+    <h3 class="section-title title-orange" style="margin: 0; border: none;">Yolcu Değerlendirmeleri</h3>
+    <select id="reviewSort" class="form-control" style="width: auto; padding: 6px 12px; font-weight: 600; color: #444; cursor: pointer; border-radius: 6px; border: 1px solid #ccc;">
+        <option value="newest">En Yeni Yorumlar</option>
+        <option value="highest">Puanı En Yüksek</option>
+        <option value="lowest">Puanı En Düşük</option>
+    </select>
+</div>
+
+<!-- Yorumların Geleceği Alan -->
+<div id="reviewsContainer">
+    <!-- JS ile yorumlar buraya dizilecek -->
+</div>
+        </section>
+    </main>
+
+    
+    <script src="app.js"></script>
+</body>
+</html>

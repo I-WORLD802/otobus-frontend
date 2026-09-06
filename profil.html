@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilim | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+            <nav id="mainNav" class="nav-links">
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary" style="margin-left: 15px;">Değerlendirme Yaz</a>
+                <span id="dynamicAuthMenu" class="auth-menu"></span>
+            </nav>
+        </div>
+    </header>
+
+   <main class="container page-content">
+        <!-- Profil Bilgileri ve Şifre Formu -->
+        <div class="form-container" style="max-width: 800px; margin-bottom: 2rem; position: relative;">
+            <h2 class="text-center section-title title-blue">Profil Bilgilerim</h2>
+            
+            <div style="font-size: 1.1rem; margin-top: 1.5rem; text-align: center;">
+                <p style="margin-bottom: 10px;"><strong>Ad Soyad:</strong> <span id="profileName">Yükleniyor...</span></p>
+                <p style="margin-bottom: 20px;"><strong>Yetki Türü:</strong> <span id="profileRole" style="background: #e3f2fd; color: #0d47a1; padding: 4px 8px; border-radius: 4px;">Yükleniyor...</span></p>
+                
+                <!-- Formu Açan Buton -->
+                <button type="button" onclick="togglePasswordForm()" class="btn-primary" style="background-color: #6c757d; border: none; font-size: 0.9rem;">⚙️ Şifre İşlemleri</button>
+            </div>
+
+            <!-- Şifre Değiştirme Alanı -->
+            <div id="hiddenPasswordSection" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                <form id="changePasswordForm" style="max-width: 350px; margin: 0 auto;">
+                    <div class="form-group">
+                        <label style="font-size: 0.9rem;">Mevcut Şifreniz</label>
+                        <input type="password" id="currentPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 0.9rem;">Yeni Şifreniz</label>
+                        <input type="password" id="newPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn-primary btn-block" style="background-color: #4CAF50; color: white; padding: 8px;">Şifreyi Güncelle</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Geçmiş Yorumlar -->
+        <div class="form-container" style="max-width: 800px;">
+            <h2 class="text-center section-title title-orange">Geçmiş Değerlendirmelerim</h2>
+            <div id="myReviewsList" style="margin-top: 1.5rem;">
+                <!-- JS ile yorumlar buraya dizilecek -->
+            </div>
+        </div>
+    </main>
+    
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firma Rozetleri | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .badge-guide-card { display: flex; align-items: center; gap: 20px; background: var(--white); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); border: 1px solid #eaeaea; }
+        .badge-guide-icon { font-size: 2rem; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-weight: bold; }
+        .bg-green { background-color: #22c55e; }
+        .bg-orange { background-color: #f59e0b; }
+        .bg-red { background-color: #ef4444; }
+        .bg-gray { background-color: #94a3b8; }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <!-- Navbar kodunu buraya yapıştır -->
+    </header>
+
+    <main class="container page-content" style="max-width: 800px; margin: 3rem auto;">
+        <h2 class="section-title title-blue text-center">Firma Rozetleri Ne Anlama Geliyor?</h2>
+        <p class="text-center" style="color: var(--text-light); margin-bottom: 3rem;">Sistemimizde firmalar, sizden aldıkları ortalama puanlara göre dinamik rozetlerle derecelendirilir.</p>
+
+        <div class="badge-guide-card">
+            <div class="badge-guide-icon bg-green">★</div>
+            <div>
+                <h3 style="color: #22c55e; margin-bottom: 5px;">Mükemmel Hizmet (4.0 - 5.0)</h3>
+                <p style="color: #444; line-height: 1.5;">Bu rozete sahip firmalar, temizlik, konfor ve dakiklik konularında yolculardan en yüksek memnuniyet oranını almış, premium hizmet sunan işletmelerdir.</p>
+            </div>
+        </div>
+
+        <div class="badge-guide-card">
+            <div class="badge-guide-icon bg-orange">★</div>
+            <div>
+                <h3 style="color: #f59e0b; margin-bottom: 5px;">Ortalama Hizmet (3.0 - 3.9)</h3>
+                <p style="color: #444; line-height: 1.5;">Standart seyahat ihtiyaçlarını karşılayan ancak bazı konularda yolcular tarafından geliştirilmesi gerektiği belirtilen firmaları temsil eder.</p>
+            </div>
+        </div>
+
+        <div class="badge-guide-card">
+            <div class="badge-guide-icon bg-red">★</div>
+            <div>
+                <h3 style="color: #ef4444; margin-bottom: 5px;">Geliştirilmeli (1.0 - 2.9)</h3>
+                <p style="color: #444; line-height: 1.5;">Yolcuların sıkça şikayet ettiği, temizlik, rötarlar veya personel iletişimi gibi konularda ciddi aksaklıklar yaşayan firmalardır.</p>
+            </div>
+        </div>
+
+        <div class="badge-guide-card">
+            <div class="badge-guide-icon bg-gray">-</div>
+            <div>
+                <h3 style="color: #94a3b8; margin-bottom: 5px;">Yeni / Değerlendirme Bekliyor</h3>
+                <p style="color: #444; line-height: 1.5;">Sisteme yeni eklenmiş veya henüz yeterli sayıda yolcu değerlendirmesine ulaşmamış firmalardır.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <!-- Footer içeriğini buraya kopyala -->
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

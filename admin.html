@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <div class="admin-header">
+            <h2>Sistem Yönetimi</h2>
+            <a href="index.html">Ana Sayfaya Dön</a>
+        </div>
+
+        <!-- İstatistik Kartları -->
+        <div class="stats-container">
+            <div class="stat-card stat-companies">
+                <h4>Toplam Firma</h4>
+                <h2 id="statCompanies">0</h2>
+            </div>
+            <div class="stat-card stat-routes">
+                <h4>Toplam Rota</h4>
+                <h2 id="statRoutes">0</h2>
+            </div>
+            <div class="stat-card stat-reviews">
+                <h4>Toplam Yorum</h4>
+                <h2 id="statReviews">0</h2>
+            </div>
+            <div class="stat-card stat-rating">
+                <h4>Ortalama Puan</h4>
+                <h2 id="statRating">0.0</h2>
+            </div>
+        </div>
+
+        <!-- Yorumlar Tablosu -->
+        <h3 class="section-title title-orange" style="margin-top: 2rem;">Kullanıcı Yorumları</h3>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Yorum</th>
+                    <th>Puan</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody id="adminReviewTable"></tbody>
+        </table>
+        <!-- Yorumlar Sayfalama -->
+        <div id="adminReviewPagination" class="pagination-modern" style="margin-top: 15px; margin-bottom: 2rem;"></div>
+
+        <!-- Firmalar Tablosu ve Ekle Butonu -->
+        <div class="table-header-flex">
+            <h3 class="section-title title-blue" style="margin:0;">Kayıtlı Firmalar</h3>
+            <button onclick="openModal('companyModal')" class="btn-add-badge">➕ Yeni Firma Ekle</button>
+        </div>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Firma Adı</th>
+                    <th>URL (Slug)</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody id="adminCompanyTable"></tbody>
+        </table>
+        <!-- Firmalar Sayfalama -->
+        <div id="adminCompanyPagination" class="pagination-modern" style="margin-top: 15px; margin-bottom: 2rem;"></div>
+
+        <!-- Rotalar Tablosu ve Ekle Butonu -->
+        <div class="table-header-flex">
+            <h3 class="section-title title-green" style="margin:0;">Kayıtlı Rotalar</h3>
+            <button onclick="openModal('routeModal')" class="btn-add-badge">➕ Yeni Rota Ekle</button>
+        </div>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>URL (Slug)</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody id="adminRouteTable"></tbody>
+        </table>
+        <!-- Rotalar Sayfalama -->
+        <div id="adminRoutePagination" class="pagination-modern" style="margin-top: 15px; margin-bottom: 2rem;"></div>
+    </div>
+
+    <!-- Firma Ekleme Modalı -->
+    <div id="companyModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Yeni Firma Ekle</h3>
+                <button onclick="closeModal('companyModal')" class="modal-close">&times;</button>
+            </div>
+            <form id="addCompanyForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="newCompanyName" placeholder="Firma Adı (Örn: Pamukkale)" class="form-control" required>
+                <input type="text" id="newCompanySlug" placeholder="URL Uzantısı (Örn: pamukkale)" class="form-control" required>
+                <button type="submit" class="btn-primary" style="background-color: #007bff; border:none; padding:10px; color:white; border-radius:6px; cursor:pointer;">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rota Ekleme Modalı -->
+    <div id="routeModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Yeni Rota Ekle</h3>
+                <button onclick="closeModal('routeModal')" class="modal-close">&times;</button>
+            </div>
+            <form id="addRouteForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="newRouteSlug" placeholder="Rota Uzantısı (Örn: bursa-ankara)" class="form-control" required>
+                <button type="submit" class="btn-primary" style="background-color: #28a745; border:none; padding:10px; color:white; border-radius:6px; cursor:pointer;">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Yanıt Ekleme Modalı -->
+    <div id="replyModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Yoruma Yanıt Ver</h3>
+                <button onclick="closeModal('replyModal')" class="modal-close">&times;</button>
+            </div>
+            <form id="replyForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="hidden" id="replyReviewId">
+                <textarea id="replyText" placeholder="Platform yöneticisi olarak resmi yanıtınız..." class="form-control" rows="4" required style="resize: vertical; padding: 10px; font-family: inherit;"></textarea>
+                <button type="submit" class="btn-primary" style="background-color: #f39c12; border:none; padding:10px; color:white; border-radius:6px; cursor:pointer;">Yanıtı Yayınla</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>

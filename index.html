@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otobüs Deneyimleri | Gerçek Yolcu Yorumları</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">🚌 Otobüs Deneyimleri</a>
+            <nav id="mainNav" class="nav-links">
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary" style="margin-left: 10px;">Değerlendirme Yaz</a>
+                <span id="dynamicAuthMenu" class="auth-menu"></span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Ana Vitrin) -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Dilediğin Firma Hakkında <span class="highlight-green">Geri Bildirim</span> ve Öneride Bulun, Puanlayıp İncele.</h1>
+                <p class="hero-subtitle">Yolcuların sesiyiz, bu doğrultuda seyahat firmalarına en hızlı şekilde sesini duyur, geri bildirimde bulun.</p>
+                
+                <div class="hero-search-box">
+                    <input type="text" id="searchInput" placeholder="Firma Ara (Örn: Kamil Koç, Pamukkale...)" onkeyup="if(event.key === 'Enter') searchCompanies()">
+                    <button onclick="searchCompanies()" class="btn-search">Ara</button>
+                </div>
+
+                <!-- YENİ EKLENEN AKILLI ROTA ARAMA ALANI -->
+                <div style="margin-top: 1.5rem;">
+                    <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 8px; font-weight: 600;">Veya rotaya göre firmaları karşılaştır:</p>
+                    <div class="hero-search-box smart-search-box">
+                        <input type="text" id="routeFrom" placeholder="Nereden? (Örn: İstanbul)" onkeyup="if(event.key === 'Enter') smartRouteSearch()" style="flex: 1; min-width: 0;">
+                        <input type="text" id="routeTo" placeholder="Nereye? (Örn: Ankara)" onkeyup="if(event.key === 'Enter') smartRouteSearch()" style="flex: 1; min-width: 0;">
+                        <button onclick="smartRouteSearch()" class="btn-search">Rota Ara</button>
+                    </div>
+                    <div id="smartSearchError" style="color: #e74c3c; font-size: 0.95rem; margin-top: 8px; font-weight: 500; display: none;"></div>
+                </div>
+                <!-- AKILLI ROTA ARAMA BİTİŞİ -->
+
+            </div>
+            <div class="hero-visual">
+                <!-- Şık bir lüks otobüs/seyahat görseli -->
+                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Otobüs Deneyimleri" class="hero-mockup">
+            </div>
+        </div>
+    </section>
+
+    <!-- NASIL ÇALIŞIR (Neden Biz) -->
+    <section class="how-it-works bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Sistem Nasıl Çalışır?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon text-green">🎫</div>
+                    <h3>1. Seyahat Bilgilerini Gir</h3>
+                    <p>Yorum yazarken seyahatinizi doğrulayan bilgileri (firma, rota, tarih) forma belirtin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon text-orange">🛡️</div>
+                    <h3>2. Moderasyon ve Doğrulama</h3>
+                    <p>Gönderdiğiniz bilet ve seyahat bilgileri moderatörler tarafından onaylanarak sisteme işlenir.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon text-blue">📊</div>
+                    <h3>3. Bilinçli Tercih Yap</h3>
+                    <p>Sadece doğrulanmış gerçek yolcuların temizlik, konfor ve personel puanlarına bakarak seçimini yapın.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPÜLER FİRMALAR (Dinamik JS Alanı) -->
+    <section class="popular-companies container" style="margin-top: 4rem;">
+        <h2 class="section-title">Popüler Otobüs Firmaları</h2>
+        <div id="companyList" class="company-grid-modern">
+            <!-- JS ile dolacak -->
+        </div>
+        <div id="pagination" class="pagination-modern"></div>
+    </section>
+
+    <!-- GÖRSEL LOKASYONLAR (Vitrin) -->
+    <section class="popular-locations bg-light" style="padding: 4rem 0; margin-top: 4rem;">
+        <div class="container">
+            <h2 class="section-title">Popüler Lokasyonlar</h2>
+          <div class="locations-grid">
+                <!-- İstanbul -->
+                <div class="location-card" style="background-image: url('images/istanbul.jpg');">
+                    <div class="location-overlay">
+                        <h3>İstanbul</h3>
+                    </div>
+                </div>
+                <!-- Ankara -->
+                <div class="location-card" style="background-image: url('images/ankara.jpg');">
+                    <div class="location-overlay">
+                        <h3>Ankara</h3>
+                    </div>
+                </div>
+                <!-- İzmir -->
+                <div class="location-card" style="background-image: url('images/izmir.jpg');">
+                    <div class="location-overlay">
+                        <h3>İzmir</h3>
+                    </div>
+                </div>
+                <!-- Bursa -->
+                <div class="location-card" style="background-image: url('images/bursa.jpg');">
+                    <div class="location-overlay">
+                        <h3>Bursa</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GELİŞMİŞ FOOTER -->
+ <!-- GELİŞMİŞ FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2 style="margin-top: 0;">🚌 Otobüs Deneyimleri</h2>
+                <p>Türkiye'nin en şeffaf otobüs yolculuğu değerlendirme ve puanlama platformu.</p>
+                <p><strong>İletişim:</strong> destek@otobusdeneyimleri.com</p>
+            </div>
+            <div class="footer-links">
+                <h4>Kurumsal</h4>
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="rozetler.html">Firma Rozetleri</a>
+                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+            </div>
+            <div class="footer-links">
+                <h4>Keşfet</h4>
+                <a href="firmalar.html">Tüm Firmalar</a>
+                <a href="rotalar.html">Popüler Rotalar</a>
+                <a href="rehber.html">Seyahat Rehberi</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Otobüs Deneyimleri. Tüm hakları İsmail Gündüz'e aittir.</p>
+        </div>
+    </footer>
+
+    <!-- ÇEREZ POLİTİKASI POPUP -->
+    <div id="cookieConsent" class="cookie-popup">
+        <div class="cookie-content">
+            <h4>Çerez Tercihleriniz</h4>
+            <p>Sitemizin güvenli ve verimli çalışması, seyahat deneyimlerinizi analiz etmek için çerezler kullanmaktayız. Detaylı bilgi için <a href="#" style="color:#2ecc71;">Gizlilik Politikamızı</a> inceleyebilirsiniz.</p>
+            <div class="cookie-buttons">
+                <button onclick="acceptCookies()" class="btn-cookie-accept">Tümünü Kabul Et</button>
+                <button onclick="acceptCookies()" class="btn-cookie-reject">Reddet</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap / Kayıt Ol | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+            <nav>
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="index.html" class="btn-primary">Ana Sayfaya Dön</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content" style="display: flex; justify-content: center; padding-top: 40px;">
+        
+        <!-- GİRİŞ FORMU (Varsayılan olarak açık) -->
+        <div id="loginSection" class="form-container" style="width: 100%; max-width: 400px; padding: 2rem;">
+            <h2 class="text-center section-title title-blue">Giriş Yap</h2>
+            <form id="loginForm" style="margin-top: 1.5rem;">
+                <div class="form-group">
+                    <label>E-posta Adresiniz</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Şifreniz</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn-primary btn-block">Giriş Yap</button>
+            </form>
+            <p class="text-center" style="margin-top: 1rem;">
+                Hesabın yok mu? <a href="#" onclick="toggleForms('register')" style="color: var(--primary-color); font-weight: bold; text-decoration: none;">Kayıt Ol</a>
+            </p>
+        </div>
+
+        <!-- KAYIT FORMU (Varsayılan olarak gizli) -->
+        <div id="registerSection" class="form-container" style="width: 100%; max-width: 400px; padding: 2rem; display: none;">
+            <h2 class="text-center section-title title-green">Kayıt Ol</h2>
+            <form id="registerForm" style="margin-top: 1.5rem;">
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" id="regFullName" class="form-control" placeholder="Örn: İsmail GÜNDÜZ" required>
+                </div>
+                <div class="form-group">
+                    <label>E-posta Adresiniz</label>
+                    <input type="email" id="regEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Şifre Belirleyin</label>
+                    <input type="password" id="regPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn-primary btn-block" style="background-color: #28a745;">Hesap Oluştur</button>
+            </form>
+            <p class="text-center" style="margin-top: 1rem;">
+                Zaten hesabın var mı? <a href="#" onclick="toggleForms('login')" style="color: #28a745; font-weight: bold; text-decoration: none;">Giriş Yap</a>
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Geçiş Efekti İçin Kısa JS -->
+    <script>
+        function toggleForms(target) {
+            if (target === 'register') {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('registerSection').style.display = 'block';
+            } else {
+                document.getElementById('registerSection').style.display = 'none';
+                document.getElementById('loginSection').style.display = 'block';
+            }
+        }
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

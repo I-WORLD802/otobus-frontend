@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seyahat Rehberi | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide-header { text-align: center; margin: 3rem 0; }
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 4rem; }
+        .guide-card { background: var(--white); border-radius: 12px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border-top: 4px solid var(--green); }
+        .guide-card h3 { color: var(--text-dark); margin-bottom: 10px; font-size: 1.25rem; }
+        .guide-card p { color: var(--text-light); line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <!-- (Navbar kodunu buraya yapıştır) -->
+
+    <main class="container page-content">
+        <div class="guide-header">
+            <h2 class="section-title title-green" style="display: inline-block;">Yolcu Seyahat Rehberi</h2>
+            <p style="color: var(--text-light); margin-top: 10px;">Sorunsuz ve konforlu bir otobüs yolculuğu için ipuçları.</p>
+        </div>
+        
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3>🎒 Bilet Seçimi</h3>
+                <p>Uzun yolculuklarda 2+1 otobüsleri tercih etmek konforunuzu artırır. Gündüz yolculuklarında güneşin yönünü hesaplayarak koltuk seçmeyi unutmayın.</p>
+            </div>
+            <div class="guide-card">
+                <h3>⏰ Dakiklik ve Bagaj</h3>
+                <p>Sefer saatinden en az 30 dakika önce peronda olmaya özen gösterin. Değerli eşyalarınızı bagaja vermek yerine her zaman yanınızdaki el çantanızda taşıyın.</p>
+            </div>
+            <div class="guide-card">
+                <h3>🛑 Mola Yerleri</h3>
+                <p>Mola sürelerine kesinlikle uyun. Uzun yolculuklarda molalarda hafif yürüyüşler yapmak kan dolaşımınızı rahatlatacaktır.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- (Footer kodunu buraya yapıştır) -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firma ve Rota Detayı | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+            <nav>
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary">Değerlendirme Yaz</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="company-header" style="position: relative;">
+            <a href="#" id="crBackLink" style="display: inline-block; margin-bottom: 15px; color: #007bff; text-decoration: none; font-weight: 600; font-size: 0.95rem;">← Rota Detayına Dön</a>
+            <h1 class="company-name" id="crTitle" style="margin-top: 5px;">Yükleniyor...</h1>
+            <div class="overall-rating">
+                <span class="stars" id="crOverallRating">⭐ - / 5</span>
+                <span class="review-count" id="crReviewCount">- değerlendirme</span>
+            </div>
+        </section>
+
+        <section class="category-scores-section">
+            <h2>Bu Rotadaki Kategori Puanları</h2>
+            
+            <div class="route-card-categories">
+                <div class="category-badge" title="Dakiklik">
+                    ⏰ Dakiklik: <span id="crScoreDakiklik">-</span>
+                </div>
+                <div class="category-badge" title="Temizlik">
+                    🧼 Temizlik: <span id="crScoreTemizlik">-</span>
+                </div>
+                <div class="category-badge" title="Konfor">
+                    🛋️ Konfor: <span id="crScoreKonfor">-</span>
+                </div>
+                <div class="category-badge" title="Personel">
+                    👤 Personel: <span id="crScorePersonel">-</span>
+                </div>
+                <div class="category-badge" title="İkram">
+                    🍽️ İkram: <span id="crScoreIkram">-</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="review-sort-row">
+                <h2 style="margin-bottom: 0;">Sadece Bu Rotadaki Yorumlar</h2>
+                
+                <!-- YORUM SIRALAMA ALANI -->
+                <div class="review-sort-container">
+                    <label for="routeReviewSort" style="font-weight: 500; color: var(--text-dark); margin-right: 10px;">Yorumları sırala:</label>
+                    <select id="routeReviewSort" class="form-control" style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; outline: none; cursor: pointer;">
+                        <option value="newest">En Yeni</option>
+                        <option value="highest">En Yüksek Puan</option>
+                        <option value="lowest">En Düşük Puan</option>
+                    </select>
+                </div>
+                <!-- YORUM SIRALAMA ALANI BİTİŞİ -->
+            </div>
+            
+            <div class="review-list" id="crReviewsContainer">
+                <!-- JS ile buraya eklenecek -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

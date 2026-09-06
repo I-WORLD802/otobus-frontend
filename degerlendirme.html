@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Değerlendirme Yaz | Otobüs Deneyimleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Otobüs Deneyimleri</a>
+            <nav>
+                <a href="firmalar.html">Firmalar</a>
+                <a href="rotalar.html">Rotalar</a>
+                <a href="degerlendirme.html" class="btn-primary">Değerlendirme Yaz</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content review-container">
+        <h2 class="review-title">Yolculuğunu Değerlendir</h2>
+        
+        <form id="reviewForm" class="review-form">
+            
+            <div class="form-group">
+                <label class="form-label">Firma Seçin</label>
+                <select id="companySelect" class="form-control" required>
+                    <option value="">Yükleniyor...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Rota Seçin</label>
+                <select id="routeSelect" class="form-control" required>
+                    <option value="">Yükleniyor...</option>
+                </select>
+            </div>
+            
+            <!-- DEĞİŞİKLİK: Seyahat Tarihi Giriş Alanı -->
+            <div class="form-group">
+                <label class="form-label" for="travelDateInput">Seyahat Tarihi</label>
+                <input type="date" id="travelDateInput" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Temizlik</label>
+                <select id="cleanlinessInput" class="form-control" required>
+                    <option value="">Puan seçin (1-5)</option>
+                    <option value="5">5 - Mükemmel</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="1">1 - Çok Kötü</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Konfor</label>
+                <select id="comfortInput" class="form-control" required>
+                    <option value="">Puan seçin (1-5)</option>
+                    <option value="5">5 - Mükemmel</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="1">1 - Çok Kötü</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Dakiklik</label>
+                <select id="punctualityInput" class="form-control" required>
+                    <option value="">Puan seçin (1-5)</option>
+                    <option value="5">5 - Mükemmel</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="1">1 - Çok Kötü</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Personel</label>
+                <select id="staffInput" class="form-control" required>
+                    <option value="">Puan seçin (1-5)</option>
+                    <option value="5">5 - Mükemmel</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="1">1 - Çok Kötü</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">İkram</label>
+                <select id="cateringInput" class="form-control" required>
+                    <option value="">Puan seçin (1-5)</option>
+                    <option value="5">5 - Mükemmel</option>
+                    <option value="4">4 - İyi</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="2">2 - Kötü</option>
+                    <option value="1">1 - Çok Kötü</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Genel Puan (Otomatik Hesaplanır)</label>
+                <input type="text" id="ratingInput" class="form-control" placeholder="Üstteki seçimlerinize göre belirlenir..." readonly required>
+            </div>
+
+            <div class="form-group-large">
+                <label class="form-label">Yorumunuz</label>
+                <textarea id="commentInput" class="form-control" rows="4" placeholder="Yolculuğunuz nasıldı? Deneyimlerinizi paylaşın..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary btn-block">Değerlendirmeyi Gönder</button>
+        </form>
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
