@@ -1,0 +1,6 @@
+@OtobusDeneyimleriAPI_HostAddress = http://localhost:5187
+
+GET {{OtobusDeneyimleriAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
