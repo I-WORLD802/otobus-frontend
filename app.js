@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5187/api";
+   const API_BASE = "https://otobus-deneyimleri-production.up.railway.app/api";
 let currentPage = 1;
 let currentSearch = "";
 
