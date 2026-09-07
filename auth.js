@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://otobus-deneyimleri-production.up.railway.app/api";
+const AUTH_API_URL = "https://otobus-deneyimleri-production.up.railway.app/api/Auth";
 
 // --- KAYIT İŞLEMİ ---
 const registerForm = document.getElementById("registerForm");
