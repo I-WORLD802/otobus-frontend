@@ -1,4 +1,4 @@
-   const API_BASE = "https://otobus-deneyimleri-production.up.railway.app/api";
+const API_BASE_URL = "https://otobus-deneyimleri-production.up.railway.app/api";
 
 // Global XSS Koruma Fonksiyonu
 function escapeHtml(value) {
