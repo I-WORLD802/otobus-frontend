@@ -60,7 +60,7 @@ function openReplyModal(reviewId) {
 async function loadAdminData() {
     try {
         // İstatistikler
-        const statsRes = await fetch(`${API_BASE}/Reviews/stats`);
+        const statsRes = await fetch(`${API_BASE_URL}/Reviews/stats`);
         if (statsRes.ok) {
             const stats = await statsRes.json();
             document.getElementById("statCompanies").innerText = stats.totalCompanies || stats.TotalCompanies;
@@ -70,19 +70,19 @@ async function loadAdminData() {
         }
 
         // Yorumlar
-        const reviewRes = await fetch(`${API_BASE}/Reviews`);
+        const reviewRes = await fetch(`${API_BASE_URL}/Reviews`);
         adminData.reviews = await reviewRes.json();
         adminData.reviews.sort((a, b) => (b.id || b.Id) - (a.id || a.Id));
         renderAdminReviews(1);
 
         // Firmalar
-        const compRes = await fetch(`${API_BASE}/Companies`);
+        const compRes = await fetch(`${API_BASE_URL}/Companies`);
         adminData.companies = await compRes.json();
         adminData.companies.sort((a, b) => (b.id || b.Id) - (a.id || a.Id));
         renderAdminCompanies(1);
 
         // Rotalar
-        const routeRes = await fetch(`${API_BASE}/Routes`);
+        const routeRes = await fetch(`${API_BASE_URL}/Routes`);
         adminData.routes = await routeRes.json();
         adminData.routes.sort((a, b) => (b.id || b.Id) - (a.id || a.Id));
         renderAdminRoutes(1);
@@ -203,7 +203,7 @@ async function deleteReview(id) {
     }
 
     try {
-        const res = await fetch(`${API_BASE}/Reviews/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
+        const res = await fetch(`${API_BASE_URL}/Reviews/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
         if (res.ok) { 
             adminData.reviews = adminData.reviews.filter(r => (r.id || r.Id) !== id);
             
@@ -241,7 +241,7 @@ async function deleteCompany(id) {
     }
 
     try {
-        const res = await fetch(`${API_BASE}/Companies/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
+        const res = await fetch(`${API_BASE_URL}/Companies/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
         if (res.ok) { 
             adminData.companies = adminData.companies.filter(c => (c.id || c.Id) !== id);
             
@@ -279,7 +279,7 @@ async function deleteRoute(id) {
     }
 
     try {
-        const res = await fetch(`${API_BASE}/Routes/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
+        const res = await fetch(`${API_BASE_URL}/Routes/${id}`, { method: 'DELETE', headers: getAuthHeaders() });
         if (res.ok) { 
             adminData.routes = adminData.routes.filter(r => (r.id || r.Id) !== id);
             
@@ -323,7 +323,7 @@ function setupAdminAddForms() {
             }
 
             try {
-                const res = await fetch(`${API_BASE}/Companies`, {
+                const res = await fetch(`${API_BASE_URL}/Companies`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
                     body: JSON.stringify({ name, slug })
@@ -366,7 +366,7 @@ function setupAdminAddForms() {
             }
 
             try {
-                const res = await fetch(`${API_BASE}/Routes`, {
+                const res = await fetch(`${API_BASE_URL}/Routes`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
                     body: JSON.stringify({ slug })
@@ -410,7 +410,7 @@ function setupAdminAddForms() {
             }
 
             try {
-                const res = await fetch(`${API_BASE}/Reviews/${reviewId}/reply`, {
+                const res = await fetch(`${API_BASE_URL}/Reviews/${reviewId}/reply`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
                     body: JSON.stringify({ replyText })
