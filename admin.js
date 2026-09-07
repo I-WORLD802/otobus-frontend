@@ -63,10 +63,10 @@ async function loadAdminData() {
         const statsRes = await fetch(`${API_BASE_URL}/Reviews/stats`);
         if (statsRes.ok) {
             const stats = await statsRes.json();
-            document.getElementById("statCompanies").innerText = stats.totalCompanies || stats.TotalCompanies;
-            document.getElementById("statRoutes").innerText = stats.totalRoutes || stats.TotalRoutes;
-            document.getElementById("statReviews").innerText = stats.totalReviews || stats.TotalReviews;
-            document.getElementById("statRating").innerText = stats.averageRating || stats.AverageRating;
+          document.getElementById("statCompanies").innerText = stats.totalCompanies ?? stats.TotalCompanies ?? 0;
+document.getElementById("statRoutes").innerText = stats.totalRoutes ?? stats.TotalRoutes ?? 0;
+document.getElementById("statReviews").innerText = stats.totalReviews ?? stats.TotalReviews ?? 0;
+document.getElementById("statRating").innerText = stats.averageRating ?? stats.AverageRating ?? 0;
         }
 
         // Yorumlar
