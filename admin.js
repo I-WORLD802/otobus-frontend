@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://otobus-deneyimleri-production.up.railway.app/api";
+const API_BASE_URL = "https://otobus-frontend.onrender.com/api";
 
 // Global XSS Koruma Fonksiyonu
 function escapeHtml(value) {
@@ -106,12 +106,23 @@ function renderAdminReviews(page) {
         table.innerHTML = pagedData.map(rev => {
             const safeText = escapeHtml((rev.text || rev.Text || '').substring(0, 50));
             
+            // YENİ: Bilet İşlemleri
+            const ticketUrl = rev.ticketImageUrl || rev.TicketImageUrl;
+            const isVerified = rev.isVerified ?? rev.IsVerified ?? false;
+            const ticketSection = ticketUrl
+                ? (isVerified
+                    ? '<span style="color:green; font-weight:bold; font-size:0.8rem;">✓ Doğrulandı</span>'
+                    : `<a href="https://otobus-frontend.onrender.com${ticketUrl}" target="_blank" style="font-size:0.8rem; color:#007bff; margin-right:5px;">Bileti Gör</a>
+                        <button onclick="verifyReview(${rev.id || rev.Id})" class="btn-add-badge" style="background:#16a34a; font-size:0.8rem;">Doğrula</button>`)
+                : '<span style="color:#94a3b8; font-size:0.8rem;">Bilet yok</span>';
+
             return `
             <tr>
                 <td>${rev.id || rev.Id}</td>
                 <td>${safeText}...</td>
                 <td><strong>${rev.overallRating || rev.OverallRating}/5</strong></td>
                 <td>
+                    <div style="margin-bottom: 5px;">${ticketSection}</div>
                     ${rev.adminReply || rev.AdminReply 
                         ? '<span style="color:green; font-weight:bold; font-size:0.85rem; margin-right:10px;">✓ Yanıtlandı</span>' 
                         : `<button onclick="openReplyModal(${rev.id || rev.Id})" class="btn-add-badge" style="background:#f39c12; margin-right:5px;">Yanıtla</button>`}
@@ -449,3 +460,27 @@ document.addEventListener("DOMContentLoaded", () => {
     loadAdminData();
     setupAdminAddForms();
 });
+// YENİ: Yorum Doğrulama İşlemi
+async function verifyReview(id) {
+    if (!confirm("Bu yorumu doğrulanmış yolcu olarak işaretlemek istediğinize emin misiniz?")) return;
+    
+    try {
+        const res = await fetch(`${API_BASE_URL}/Reviews/${id}/verify`, {
+            method: 'POST',
+            headers: getAuthHeaders()
+        });
+        
+        if (res.ok) {
+            const reviewIndex = adminData.reviews.findIndex(r => (r.id || r.Id) === id);
+            if (reviewIndex !== -1) {
+                adminData.reviews[reviewIndex].isVerified = true;
+                adminData.reviews[reviewIndex].IsVerified = true;
+            }
+            renderAdminReviews(adminData.currentReviewPage);
+        } else {
+            handleAuthError(res);
+        }
+    } catch (error) {
+        console.error("Doğrulama hatası:", error);
+    }
+}
