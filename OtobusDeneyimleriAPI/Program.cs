@@ -61,19 +61,26 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
 
-    // Admin hesabını açılışta ortam değişkenlerinden oluştur
     var adminEmail = builder.Configuration["Admin:Email"];
     var adminPassword = builder.Configuration["Admin:Password"];
-    if (!string.IsNullOrEmpty(adminEmail) && !string.IsNullOrEmpty(adminPassword)
-        && !db.Users.Any(u => u.Email == adminEmail))
+    if (!string.IsNullOrEmpty(adminEmail) && !string.IsNullOrEmpty(adminPassword))
     {
-        db.Users.Add(new User
+        var admin = db.Users.FirstOrDefault(u => u.Email == adminEmail);
+        if (admin == null)
         {
-            FullName = "Admin",
-            Email = adminEmail,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
-            Role = "Admin"
-        });
+            db.Users.Add(new User
+            {
+                FullName = "Admin",
+                Email = adminEmail,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
+                Role = "Admin"
+            });
+        }
+        else
+        {
+            admin.Role = "Admin";
+            admin.PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword);
+        }
         db.SaveChanges();
     }
 }
