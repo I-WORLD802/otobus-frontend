@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OtobusDeneyimleriAPI.Data;
+using OtobusDeneyimleriAPI.Models;
 using System.Text;
 using System.Threading.RateLimiting; 
 using Microsoft.Extensions.FileProviders; // Statik dosyalar için eklendi
@@ -59,6 +60,22 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
+
+    // Admin hesabını açılışta ortam değişkenlerinden oluştur
+    var adminEmail = builder.Configuration["Admin:Email"];
+    var adminPassword = builder.Configuration["Admin:Password"];
+    if (!string.IsNullOrEmpty(adminEmail) && !string.IsNullOrEmpty(adminPassword)
+        && !db.Users.Any(u => u.Email == adminEmail))
+    {
+        db.Users.Add(new User
+        {
+            FullName = "Admin",
+            Email = adminEmail,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
+            Role = "Admin"
+        });
+        db.SaveChanges();
+    }
 }
 
 // YENİ EKLENEN BÖLÜM: Bilet resimleri için statik dosya servisi
