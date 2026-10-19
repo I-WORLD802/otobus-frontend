@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.RateLimiting; // YENİ EKLENDİ
+using Microsoft.AspNetCore.RateLimiting; 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OtobusDeneyimleriAPI.Data;
 using System.Text;
-using System.Threading.RateLimiting; // YENİ EKLENDİ
+using System.Threading.RateLimiting; 
+using Microsoft.Extensions.FileProviders; // Statik dosyalar için eklendi
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS İznini Tanımla (Frontend'in API'ye erişebilmesi için)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -22,9 +22,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=otobus.db"));
+    options.UseSqlite("Data Source=/app/data/otobus.db"));
 
-// --- YENİ EKLENEN JWT AYARLARI ---
 var jwtKey = builder.Configuration["Jwt:Key"];
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -40,7 +39,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// --- YENİ EKLENEN: SPAM KORUMASI (Rate Limiting) ---
 builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("ReviewLimit", opt =>
@@ -57,6 +55,24 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureCreated();
+}
+
+// YENİ EKLENEN BÖLÜM: Bilet resimleri için statik dosya servisi
+var ticketUploadsDir = Directory.Exists("/app/data")
+     ? "/app/data/uploads/tickets"
+     : Path.Combine(Directory.GetCurrentDirectory(), "uploads", "tickets");
+Directory.CreateDirectory(ticketUploadsDir);
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.GetFullPath(Path.Combine(ticketUploadsDir, ".."))),
+    RequestPath = "/uploads"
+});
+// YENİ EKLENEN BÖLÜM BİTİŞ
 
 if (app.Environment.IsDevelopment())
 {
@@ -65,17 +81,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// CORS Kuralını Aktif Et
 app.UseCors("AllowAll");
-
-// --- SPAM KORUMASI DEVREYE ALINDI ---
-app.UseRateLimiter(); // Kimlik doğrulamadan hemen önce çalışmalı
-
-// --- KİMLİK DOĞRULAMA AKTİF EDİLDİ (Sıralama kritik) ---
+app.UseRateLimiter(); 
 app.UseAuthentication(); 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
